@@ -16,25 +16,30 @@ Destination.prototype.addLandmark = function(name, notes){
   this.landmarks.push(newLandmark);
 }
 
+function addLandmarkDiv() {
+  $("#new-landmarks").append('<div class="new-landmark">' +
+  '<div class="form-group">' +
+  '<label for="landmark">Enter a Landmark:</label>' +
+  '<input type="text" class="form-control landmark-input">' +
+  '<label for="notes">Enter notes about Landmark:</label>' +
+  '<input type="text" class="form-control notes-input">' +
+  '</div>' +
+  '</div>');
+};
+
+function resetFields() {
+  var inputLocation = $("input#location").val("");
+  var inputTimeOfYear = $("input#timeOfYear").val("");
+  var inputLandmark = $("input#landmark").val("");
+  var inputNotes = $("input#notes").val("");
+  $("#new-landmarks").empty();
+  addLandmarkDiv();
+}
 // Front End
 $(function(){
-
-  function addLandmarkDiv() {
-    $("#new-landmarks").append('<div class="new-landmark">' +
-      '<div class="form-group">' +
-        '<label for="landmark">Enter a Landmark:</label>' +
-        '<input type="text" class="form-control landmark-input">' +
-        '<label for="notes">Enter notes about Landmark:</label>' +
-        '<input type="text" class="form-control notes-input">' +
-      '</div>' +
-    '</div>');
-  };
-
   $("#landmarkButton").click(function() {
     addLandmarkDiv();
   });
-
-
 
   $("form#destinationForm").submit(function() {
     event.preventDefault();
@@ -47,7 +52,6 @@ $(function(){
       var inputNotes = $(this).find(".notes-input").val();
       currentDest.addLandmark(inputLandmark, inputNotes);
     });
-    console.log(currentDest);
 
     $("#destinationList").append("<li class='dest'>"+currentDest.location+"</li>");
     $(".dest").last().click(function() {
@@ -59,14 +63,7 @@ $(function(){
         $("#landmark-section").append("<h5>"+landmark.name+"</h5><ul><li>" + landmark.notes+"</li></ul>");
       });
     });
-
     // clear form
-    var inputLocation = $("input#location").val("");
-    var inputTimeOfYear = $("input#timeOfYear").val("");
-    var inputLandmark = $("input#landmark").val("");
-    var inputNotes = $("input#notes").val("");
-    $("#new-landmarks").empty();
-    addLandmarkDiv();
-
-  })
+    resetFields();
+  });
 });
