@@ -22,12 +22,17 @@
             <label for="timeOfYear">Enter Time of Year:</label>
             <input type="text" class="form-control" id="timeOfYear">
           </div>
-          <div class="form-group">
-            <label for="landmark">Enter a Landmark:</label>
-            <input type="text" class="form-control" id="landmark">
-            <label for="notes">Enter notes about Landmark:</label>
-            <input type="text" class="form-control" id="notes">
+          <div id="new-landmarks">
+            <div class="new-landmark">
+              <div class="form-group">
+                <label for="landmark">Enter a Landmark:</label>
+                <input type="text" class="form-control landmark-input">
+                <label for="notes">Enter notes about Landmark:</label>
+                <input type="text" class="form-control notes-input">
+              </div>
+            </div>
           </div>
+          <button type="button" id="landmarkButton" class="btn btn-info">Add Landmark</button>
           <button type="submit" class="btn btn-primary">Add Location</button>
         </form>
       </div>
