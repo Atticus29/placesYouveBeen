@@ -41,18 +41,29 @@ $(function(){
     var inputLocation = $("input#location").val();
     var inputTimeOfYear = $("input#timeOfYear").val();
 
-    var destination1 = new Destination(inputLocation, inputTimeOfYear);
+    var currentDest = new Destination(inputLocation, inputTimeOfYear);
     $(".new-landmark").each(function(){
       var inputLandmark = $(this).find(".landmark-input").val();
       var inputNotes = $(this).find(".notes-input").val();
-      destination1.addLandmark(inputLandmark, inputNotes);
+      currentDest.addLandmark(inputLandmark, inputNotes);
     });
-    console.log(destination1);
+    console.log(currentDest);
+
+    $("#destinationList").append("<li class='dest'>"+currentDest.location+"</li>");
+    $(".dest").last().click(function() {
+      $("#destinationDetails h3").text(currentDest.location);
+      $("#ToY").text(currentDest.timeOfYear);
+      $("#landmark-section").empty();
+      currentDest.landmarks.forEach(function(landmark) {
+        $("#landmark-section").append("<h5>"+landmark.name+"</h5><ul><li>" + landmark.notes+"</li></ul>");
+      });
+    });
+
+    // clear form
     var inputLocation = $("input#location").val("");
     var inputTimeOfYear = $("input#timeOfYear").val("");
     var inputLandmark = $("input#landmark").val("");
     var inputNotes = $("input#notes").val("");
-
     $("#new-landmarks").empty();
     addLandmarkDiv();
 
