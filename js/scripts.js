@@ -51,6 +51,7 @@ $(function(){
 
     $("#destinationList").append("<li class='dest'>"+currentDest.location+"</li>");
     $(".dest").last().click(function() {
+      $("#destinationDetails").show();
       $("#destinationDetails h3").text(currentDest.location);
       $("#ToY").text(currentDest.timeOfYear);
       $("#landmark-section").empty();
